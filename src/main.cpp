@@ -9,7 +9,9 @@ int a = 0;
 char buffer[40]; // Speicherplatz für den Text erstellen
 
 
-void setup() {
+void setup() 
+{
+  // Baudrate, übertragungsgeschwindigkeit
   Serial.begin(115200);
   Serial.println("Hello, Arduino");
 
