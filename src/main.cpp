@@ -1,44 +1,109 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+// Pins
+const int rgb[] = {0, 6, 5, 3}; 
 
-int result = 0;
-int a = 0;
+// LED Intensity
+int H1[] = {0, 50, 100, 150, 200, 250};  
 
-char buffer[40]; // Speicherplatz für den Text erstellen
+int P1 = 300; // Pause
+int P2 = 70; // Pause
+int P3 = 1000; // Pause
 
+int i; // Loop
+int a; // outer loop
+int b; // color 1
+int c; // collor 2
 
+// Main Function
 void setup() 
 {
-  // Baudrate, übertragungsgeschwindigkeit
-  Serial.begin(115200);
-  Serial.println("Hello, Arduino");
+  // starts serial communication and sets the speed to 9600 baud (bits per second)
+  Serial.begin(9600);
+  //Serial.begin(115200);
 
-  pinMode(2, OUTPUT);
+  // Output
+  Serial.println("MYCROMARS");
+  Serial.println("ARDUINO UNO");
+  Serial.println("RGB LED");
 
-  result = myFunction(100, 200);
-  //Serial.println(result);
-
-
-  sprintf(buffer, "Das Ergebnis ist: %d", result);
-  Serial.println(buffer);
+  // Activate: Pins 
+  pinMode( rgb[1], OUTPUT);
+  pinMode( rgb[2], OUTPUT);
+  pinMode( rgb[3], OUTPUT);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  if (a == 0){
-    a = 1;
-    Serial.println("Hello from Loop");
+// Step Function
+void loop() 
+{
+  // LED: red, green, blue 
+  for (a = 1; a < 4; a++)
+  {
+    // LED ON
+    for (i = 1; i <= 5; i++)
+    {
+      analogWrite( rgb[a], H1[i]);
+      delay(P2);
+    }
+    delay(P3);
+    
+    // LED OFF
+    for (i = 4; i >= 0; i--)
+    {
+      analogWrite( rgb[a], H1[i]);
+      delay(P2);
+    }
+    delay(P1);
   }
 
-  digitalWrite(2, HIGH);
-  delay(200);
-  digitalWrite(2, LOW);
-  delay(200);
-}
+  // LED: yellow, violet, türkis
+  for (a = 1; a < 4; a++)
+  {
+    // Collor 1
+    if (a==1 || a==2) {b = 1;}
+    if (a==3) {b = 2;}
+    
+    // Collor 2
+    if (a==1) {c = 2;}
+    if (a==2 || a==3) {c = 3;}
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+    // LED ON
+    for (i = 1; i <= 5; i++)
+    {
+      analogWrite( rgb[b], H1[i]);
+      analogWrite( rgb[c], H1[i]);
+      delay(P2);
+    }
+    delay(P3);
+    
+    // LED OFF
+    for (i = 4; i >= 0; i--)
+    {
+      analogWrite( rgb[b], H1[i]);
+      analogWrite( rgb[c], H1[i]);
+      delay(P2);
+    }
+    delay(P1);
+  }
+  
+  // LED white on
+  for (i = 1; i <= 5; i++)
+  {
+    analogWrite( rgb[1], H1[i]);
+    analogWrite( rgb[2], H1[i]);
+    analogWrite( rgb[3], H1[i]);
+    delay(P2);
+  }
+  delay(P3);
+  
+  // LED off
+  for (i = 4; i >= 0; i--)
+  {
+    analogWrite( rgb[1], H1[i]);
+    analogWrite( rgb[2], H1[i]);
+    analogWrite( rgb[3], H1[i]);
+    delay(P2);
+  }
+  
+  delay(P1);
 }
