@@ -5,11 +5,17 @@
     #include <stdio.h>
     
     // header files
-    #include "../include/function_button_1.h"
+    #include "../include/button_1.h"
+
     #include "../include/blink_1.h"
+    #include "../include/blink_2.h"
+    #include "../include/blink_3.h"
 
     // CPP files
-    #include "../include/function_button_1.cpp"
+    #include "../include/button_1.cpp"
+
     #include "../include/blink_1.cpp"
+    #include "../include/blink_2.cpp"
+    #include "../include/blink_3.cpp"
     
 #endif

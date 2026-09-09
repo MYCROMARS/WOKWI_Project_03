@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "../include/button_1.h"
 
-void blink_1(const int *PIN_rgb1, 
+void blink_2(const int *PIN_rgb1, 
               const int *LED_intensity1, 
               int a1, int i1,
               int *PIN_b1, int *PIN_c1,
@@ -9,11 +9,19 @@ void blink_1(const int *PIN_rgb1,
               int PIN_a2, int *Button_press2, int *LED_ON2
               )
 {
-  Serial.println("Blink 1");
+  Serial.println("Blink 2");
 
   // LED ON: red, green, blue 
   for (int a1 = 1; a1 < 4; a1++)
   {
+    // Collor 1
+    if (a1==1 || a1==2) {*PIN_b1 = 1;}
+    if (a1==3) {*PIN_b1 = 2;}
+    
+    // Collor 2
+    if (a1==1) {*PIN_c1 = 2;}
+    if (a1==2 || a1==3) {*PIN_c1 = 3;}
+
     if (*LED_ON2 == 1)
     {
       // LED ON
@@ -23,7 +31,8 @@ void blink_1(const int *PIN_rgb1,
         if (*LED_ON2 == 1){button_1(PIN_a2, Button_press2, LED_ON2);}
         if (*LED_ON2 == 0){break;}
 
-        analogWrite( PIN_rgb1[a1], LED_intensity1[i1]);
+        analogWrite( PIN_rgb1[*PIN_b1], LED_intensity1[i1]);
+        analogWrite( PIN_rgb1[*PIN_c1], LED_intensity1[i1]);
 
         delay(P2_1);
       }
@@ -39,7 +48,8 @@ void blink_1(const int *PIN_rgb1,
         // Function: button
         if (*LED_ON2 == 1){button_1(PIN_a2, Button_press2, LED_ON2);}
 
-        analogWrite( PIN_rgb1[a1], LED_intensity1[i1]);
+          analogWrite( PIN_rgb1[*PIN_b1], LED_intensity1[i1]);
+          analogWrite( PIN_rgb1[*PIN_c1], LED_intensity1[i1]);
 
         delay(P2_1);
       }

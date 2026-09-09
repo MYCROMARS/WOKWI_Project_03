@@ -1,4 +1,4 @@
-
+#include <Arduino.h>
 #include "header.h"
 
 // Create & assign *************************************
@@ -29,7 +29,7 @@ const int LED_intensity[] = {0, 50, 100, 150, 200, 250};
 // Main Function ***************************************
 void setup() 
 {
-  // starts serial communication and sets the speed to 9600 baud (bits per second)
+  // start serial communication and sets the speed to 9600 baud (bits per second)
   Serial.begin(9600);
   //Serial.begin(115200);
 
@@ -50,161 +50,39 @@ void setup()
 // Step Function ***************************************
 void loop() 
 {
-  // Function: button
-  function_button_1(PIN_a, &Button_press, &LED_ON);
+  // Function: button ON/OFF
+  button_1(PIN_a, &Button_press, &LED_ON);
   
   if (LED_ON == 1)
   {
+    // Function: Blink 1
     blink_1(PIN_rgb, LED_intensity, a, i, &PIN_b, &PIN_c, P1, P2, P3, PIN_a, &Button_press, &LED_ON);
-    /*
-    // LED ON: red, green, blue 
-    for (a = 1; a < 4; a++)
-    {
-      // LED ON
-      for (i = 1; i <= 5; i++)
-      {
-        analogWrite( rgb[a], H1[i]);
+  }
 
-        delay(P2);
-
-        // Function: button
-        function_button_1(&d, &button, &on);
-
-        if (on == 0)
-        {break;}
-      }
-
-      // Function: button
-      function_button_1(&d, &button, &on);
-
-      delay(P3);
-
-      // Function: button
-      function_button_1(&d, &button, &on);
-      
-      // LED OFF
-      for (i = 4; i >= 0; i--)
-      {
-        analogWrite( rgb[a], H1[i]);
-
-        delay(P2);
-
-        // Function: button
-        function_button_1(&d, &button, &on);
-      }
-
-      if (on == 0)
-        {break;}
-
-      delay(P1);
-    }
-      */
-  
-    // Function: button
-    function_button_1(PIN_a, &Button_press, &LED_ON);
+  // Function: button OFF
+  if (LED_ON == 1){button_1(PIN_a, &Button_press, &LED_ON);}
     
-    if (LED_ON == 1)
-    {
-      // LED ON: yellow, violet, türkis
-      for (a = 1; a < 4; a++)
-      {
-        // Collor 1
-        if (a==1 || a==2) {PIN_b = 1;}
-        if (a==3) {PIN_b = 2;}
-        
-        // Collor 2
-        if (a==1) {PIN_c = 2;}
-        if (a==2 || a==3) {PIN_c = 3;}
-        
-        // LED ON
-        for (i = 1; i <= 5; i++)
-        {
-          analogWrite( PIN_rgb[PIN_b], LED_intensity[i]);
-          analogWrite( PIN_rgb[PIN_c], LED_intensity[i]);
+  if (LED_ON == 1)
+  {
+    // Function: Blink 2
+    blink_2(PIN_rgb, LED_intensity, a, i, &PIN_b, &PIN_c, P1, P2, P3, PIN_a, &Button_press, &LED_ON);
+  }
 
-          delay(P2);
+  // Function: button OFF
+  if (LED_ON == 1){button_1(PIN_a, &Button_press, &LED_ON);}
 
-          // Function: button
-          function_button_1(PIN_a, &Button_press, &LED_ON);
-
-          if (LED_ON == 0)
-          {break;}
-        }
-
-        // Function: button
-        function_button_1(PIN_a, &Button_press, &LED_ON);
-
-        delay(P3);
-
-        // Function: button
-        function_button_1(PIN_a, &Button_press, &LED_ON);
-        
-        // LED OFF
-        for (i = 4; i >= 0; i--)
-        {
-          analogWrite(PIN_rgb[PIN_b], LED_intensity[i]);
-          analogWrite(PIN_rgb[PIN_c], LED_intensity[i]);
-
-          delay(P2);
-
-          // Function: button
-          function_button_1(PIN_a, &Button_press, &LED_ON);
-        }
-
-        if (LED_ON == 0)
-        {break;}
-
-        delay(P1);
-      }
-    }
+  if (LED_ON == 1)
+  {
+    // Function: Blink 3
+    blink_3(PIN_rgb, LED_intensity, a, i, &PIN_b, &PIN_c, P1, P2, P3, PIN_a, &Button_press, &LED_ON);
+  }
     
-    // Function: button
-    function_button_1(PIN_a, &Button_press, &LED_ON);
-
-    if (LED_ON == 1)
-    {
-      // LED ON: white
-      for (i = 1; i <= 5; i++)
-      {
-        analogWrite(PIN_rgb[1], LED_intensity[i]);
-        analogWrite(PIN_rgb[2], LED_intensity[i]);
-        analogWrite(PIN_rgb[3], LED_intensity[i]);
-
-        delay(P2);
-
-        // Function: button
-        function_button_1(PIN_a, &Button_press, &LED_ON);
-
-        if (LED_ON == 0)
-        {break;}
-      }
-
-      // Function: button
-      function_button_1(PIN_a, &Button_press, &LED_ON);
-
-      delay(P3);
-
-      // Function: button
-      function_button_1(PIN_a, &Button_press, &LED_ON);
-    
-      // LED off
-      for (i = 4; i >= 0; i--)
-      {
-        analogWrite(PIN_rgb[1], LED_intensity[i]);
-        analogWrite(PIN_rgb[2], LED_intensity[i]);
-        analogWrite(PIN_rgb[3], LED_intensity[i]);
-
-        delay(P2);
-
-        // Function: button
-        function_button_1(PIN_a, &Button_press, &LED_ON);
-      }
-    }
-
+  if (LED_ON == 1){
     delay(P3);
   }
   else{
     delay(P1);
   }
+  
 }
 // END

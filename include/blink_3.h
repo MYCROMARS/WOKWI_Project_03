@@ -1,7 +1,7 @@
-#ifndef BLINK_1
-    #define BLINK_1
+#ifndef BLINK_3
+    #define BLINK_3
 
-    void blink_1(const int *PIN_rgb1, 
+    void blink_3(const int *PIN_rgb1, 
         const int *LED_intensity1, 
         int a1, int i1, 
         int *PIN_b1, int *PIN_c1,
