@@ -53,6 +53,7 @@ void loop()
   // Function: button ON/OFF
   button_1(PIN_a, &Button_press, &LED_ON);
   
+  // Blink 1
   if (LED_ON == 1)
   {
     // Function: Blink 1
@@ -62,6 +63,8 @@ void loop()
   // Function: button OFF
   if (LED_ON == 1){button_1(PIN_a, &Button_press, &LED_ON);}
     
+  
+  // Blink 2
   if (LED_ON == 1)
   {
     // Function: Blink 2
@@ -71,12 +74,15 @@ void loop()
   // Function: button OFF
   if (LED_ON == 1){button_1(PIN_a, &Button_press, &LED_ON);}
 
+
+  // Blink 3
   if (LED_ON == 1)
   {
     // Function: Blink 3
     blink_3(PIN_rgb, LED_intensity, a, i, &PIN_b, &PIN_c, P1, P2, P3, PIN_a, &Button_press, &LED_ON);
   }
-    
+  
+  // Delay
   if (LED_ON == 1){
     delay(P3);
   }
