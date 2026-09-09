@@ -1,11 +1,11 @@
 
-void function_button_1(int *x, int *y, int *z){
+void function_button_1(int x, int *y, int *z){
   // LED green
   //digitalWrite(x, HIGH);
 
   //Serial.println("LED green has Power");
 
-    if (digitalRead(*x) == LOW)
+  if (digitalRead(x) == LOW)
   {  
     if (*y == 0){
       *y = 1;
